@@ -1,0 +1,183 @@
+{
+  "displayName": "MongoDB Integration",
+  "name": "mongodb-integration",
+  "description": "MongoDB Integration for Dataloop",
+  "scope": "project",
+  "version": "0.0.1",
+  "attributes": {
+    "Provider": "DatabMongoDBicks",
+    "Category": "Application",
+    "Deployed By": "MongoDB",
+    "Media Type": ["Text"],
+    "Application Type": ["Pipeline Node"],
+    "Hub": ["Dataloop"]
+  },
+  "codebase": {
+    "type": "git",
+    "gitUrl": "https://github.com/dataloop-ai-apps/integrations-mongodb",
+    "gitTag": "0.0.1"
+  },
+  "components": {
+    "pipelineNodes": [
+      {
+        "invoke": {
+          "type": "function",
+          "namespace": "mongodb-integ-service.mongodb-integ-module.mongodb_to_dataloop"
+        },
+        "name": "Import MongoDB",
+        "categories": ["MongoDB"],
+        "displayName": "Import MongoDB",
+        "description": "Import MongoDB Table into Dataloop",
+        "scope": "project",
+        "configuration": {
+          "fields": [
+            {
+              "name": "name",
+              "title": "Node Name",
+              "props": {
+                "title": true,
+                "type": "string",
+                "default": "Import MongoDB",
+                "required": true,
+                "placeholder": "Insert node name"
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "widget": "dl-input"
+            }
+          ]
+        }
+      },
+      {
+        "invoke": {
+          "type": "function",
+          "namespace": "mongodb-integ-service.mongodb-integ-module.update_record"
+        },
+        "name": "Export MongoDB",
+        "categories": ["MongoDB"],
+        "displayName": "Export MongoDB",
+        "description": "Export Dataloop Best Response to MongoDB",
+        "scope": "project",
+        "configuration": {
+          "fields": [
+            {
+              "name": "name",
+              "title": "Node Name",
+              "props": {
+                "title": true,
+                "type": "string",
+                "default": "Export MongoDB",
+                "required": true,
+                "placeholder": "Insert node name"
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "widget": "dl-input"
+            }
+          ]
+        }
+      }
+    ],
+    "modules": [
+      {
+        "name": "mongodb-integ-module",
+        "entryPoint": "nodes/import_export/mongodb_base.py",
+        "className": "MongodbBase",
+        "computeConfig": "mongodb-integ-service",
+        "integrations": ["dl-mongodb-password"],
+        "functions": [
+          {
+            "name": "mongodb_to_dataloop",
+            "input": [
+              {
+                "type": "String",
+                "name": "username"
+              },
+              {
+                "type": "String",
+                "name": "host"
+              },
+              {
+                "type": "String",
+                "name": "db_name"
+              },
+              {
+                "type": "String",
+                "name": "collection"
+              },
+              {
+                "type": "String",
+                "name": "dataset_id"
+              }
+            ],
+            "output": [
+              {
+                "type": "Item[]",
+                "name": "items"
+              }
+            ],
+            "displayIcon": "icon-dl-mongodb"
+          },
+          {
+            "name": "update_record",
+            "input": [
+              {
+                "type": "Item",
+                "name": "item"
+              },
+              {
+                "type": "String",
+                "name": "username"
+              },
+              {
+                "type": "String",
+                "name": "host"
+              },
+              {
+                "type": "String",
+                "name": "db_name"
+              },
+              {
+                "type": "String",
+                "name": "collection"
+              }
+            ],
+            "output": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "displayIcon": "icon-dl-mongodb"
+          }
+        ]
+      }
+    ],
+    "computeConfigs": [
+      {
+        "name": "mongodb-integ-service",
+        "moduleName": "mongodb-integ-module",
+        "runtime": {
+          "podType": "regular-xs",
+          "runnerImage": "gcr.io/viewo-g/piper/agent/cpu/mongodb-integrations:0.0.1",
+          "numReplicas": 1,
+          "concurrency": 10,
+          "autoscaler": {
+            "type": "rabbitmq",
+            "minReplicas": 0,
+            "maxReplicas": 2,
+            "queueLength": 10
+          }
+        }
+      }
+    ]
+  }
+}
