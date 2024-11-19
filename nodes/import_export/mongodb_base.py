@@ -84,7 +84,7 @@ class MongodbBase(dl.BaseServiceRunner):
 
             prompt_items = []
             for document in documents:
-                prompt_item = dl.PromptItem(name=document["_id"])
+                prompt_item = dl.PromptItem(name=str(document["_id"]))
                 prompt_item.add(
                     message={
                         "role": "user",
