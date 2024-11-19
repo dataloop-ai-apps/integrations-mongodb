@@ -5,7 +5,7 @@
   "scope": "project",
   "version": "0.0.3",
   "attributes": {
-    "Provider": "DatabMongoDBicks",
+    "Provider": "MongoDB",
     "Category": "Application",
     "Deployed By": "MongoDB",
     "Media Type": ["Text"],
