@@ -27,3 +27,7 @@ To set up the integration, you'll need the following information:
 
 - **Export MongoDB**
   - This node takes the response marked as the best and updates the corresponding document in the MongoDB collection with the response, model name, and ID from Dataloop.
+
+## Attributions
+
+This project makes use of the **Databricks SDK for Python**, which is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
