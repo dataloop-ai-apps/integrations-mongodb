@@ -8,6 +8,7 @@
     "Provider": "MongoDB",
     "Category": "Application",
     "Deployed By": "MongoDB",
+    "License": "Apache 2.0",
     "Media Type": ["Text"],
     "Application Type": ["Pipeline Node"],
     "Hub": ["Dataloop"]
