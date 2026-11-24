@@ -1,7 +1,7 @@
 {
   "displayName": "MongoDB Integration",
   "name": "mongodb-integration",
-  "description": "MongoDB Integration for Dataloop",
+  "description": "MongoDB Integration for DDOE",
   "scope": "project",
   "version": "0.0.7",
   "attributes": {
@@ -11,7 +11,7 @@
     "License": "Apache 2.0",
     "Media Type": ["Text"],
     "Application Type": ["Pipeline Node"],
-    "Hub": ["Dataloop"]
+    "Hub": ["DDOE"]
   },
   "codebase": {
     "type": "git",
@@ -28,7 +28,7 @@
         "name": "Import MongoDB",
         "categories": ["MongoDB"],
         "displayName": "Import MongoDB",
-        "description": "Import MongoDB Table into Dataloop",
+        "description": "Import MongoDB Table into DDOE",
         "scope": "project",
         "configuration": {
           "fields": [
@@ -61,7 +61,7 @@
         "name": "Export MongoDB",
         "categories": ["MongoDB"],
         "displayName": "Export MongoDB",
-        "description": "Export Dataloop Best Response to MongoDB",
+        "description": "Export DDOE Best Response to MongoDB",
         "scope": "project",
         "configuration": {
           "fields": [

@@ -54,13 +54,13 @@ class MongodbBase(dl.BaseServiceRunner):
         dataset_id: str,
     ):
         """
-        Creates a PromptItem for each document in the specified MongoDB collection and uploads them to the specified Dataloop dataset.
+        Creates a PromptItem for each document in the specified MongoDB collection and uploads them to the specified DDOE dataset.
 
         :param username: The username for the MongoDB server.
         :param host: The hostname of the MongoDB server.
         :param db_name: The name of the MongoDB database.
         :param collection: The name of the MongoDB collection.
-        :param dataset_id: The ID of the Dataloop dataset.
+        :param dataset_id: The ID of the DDOE dataset.
         :return: A list of the uploaded PromptItems or None if an error occurs.
         """
 
